@@ -91,8 +91,8 @@ body{
     margin: 5rem 0rem;
 }
 
-.btn-paginacion button{
-    padding: 1rem 1rem;
+.btn-paginacion svg{
+    cursor: pointer;
 }
 
 .btn-paginacion p{
