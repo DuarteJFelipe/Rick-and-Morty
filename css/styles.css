@@ -1,0 +1,28 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background-color:#eee;
+}
+
+.personaje-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card-personaje{
+    width: 18.77rem;
+    position: relative;
+    border-radius: 10rem;
+    border: 1 solid black;
+
+}
+
+.species{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}

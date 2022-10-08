@@ -6,10 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="//unpkg.com/alpinejs" defer></script>
     <title>Rick and Morty</title>
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
 </head>
     <body>
-
+        <div x-data="main()" x-init="fetch(url).then(response => response.json()).then(json => {characters = json.results; numPages = json.info.pages;})">
+            <div class="personaje-list">
+                <template x-for="personaje in characters">
+                    <div class="card-personaje">
+                        <img x-bind:src="personaje.image">
+                        <h1 x-text="personaje.name"></h1>
+                        <p x-text="personaje.status"></p>
+                        <p class="species" x-text="personaje.species"></p>
+                        <p x-text="personaje.origin.name"></p>
+                        <p x-text="personaje.location.name"></p>
+                    </div>
+                </template>
+            </div>
+            <p>Num Páginas: <span x-text="numPages"></span></p>
+            <p>Páginas Actual: <span x-text="page"></span></p>
+            <button @click="changePage('prev')">PREV</button><button @click="changePage('next')">NEXT</button>
+        </div>
 
     </body>
+
+    
     <script src="js/app.js"></script>
 </html>
