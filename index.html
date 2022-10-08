@@ -11,20 +11,31 @@
     <body>
         <div x-data="main()" x-init="fetch(url).then(response => response.json()).then(json => {characters = json.results; numPages = json.info.pages;})">
             <div class="personaje-list">
-                <template x-for="personaje in characters">
-                    <div class="card-personaje">
-                        <img x-bind:src="personaje.image">
-                        <h1 x-text="personaje.name"></h1>
-                        <p x-text="personaje.status"></p>
-                        <p class="species" x-text="personaje.species"></p>
-                        <p x-text="personaje.origin.name"></p>
-                        <p x-text="personaje.location.name"></p>
+                <template x-for="personaje in characters" >
+                    <div class="card">
+                        <div class="face front">
+                            <img x-bind:src="personaje.image">
+                            <h2 x-text="personaje.name"></h2>
+                            <p class="species" x-text="personaje.species"></p>
+                        </div>
+                        <div class="face back">
+                            <p x-text="personaje.status"></p>
+                            <p x-text="personaje.origin.name"></p>
+                            <p x-text="personaje.location.name"></p>
+                        </div>
                     </div>
                 </template>
             </div>
-            <p>Num Páginas: <span x-text="numPages"></span></p>
-            <p>Páginas Actual: <span x-text="page"></span></p>
-            <button @click="changePage('prev')">PREV</button><button @click="changePage('next')">NEXT</button>
+
+            <div class="btn-paginacion">
+                <svg @click="changePage('prev')" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icons">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>                  
+                <p><span x-text="page"></span> to <span x-text="numPages"></span></p>
+                <svg  @click="changePage('next')" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icons">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+            </div>
         </div>
 
     </body>
